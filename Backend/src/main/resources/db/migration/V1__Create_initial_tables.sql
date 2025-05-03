@@ -25,7 +25,7 @@ CREATE TABLE invoice (
     invoice_number VARCHAR(20) UNIQUE NOT NULL,
     invoice_date DATE NOT NULL,
     due_date DATE NOT NULL,
-    client_id VARCHAR(20) NOT NULL,
+    client_id INTEGER NOT NULL,
     total_sale DECIMAL(12,2) NOT NULL,
     total_cost DECIMAL(12,2) NOT NULL,
     FOREIGN KEY (client_id) REFERENCES Client(id)
@@ -34,8 +34,8 @@ CREATE TABLE invoice (
 -- Table: invoice_kardex
 CREATE TABLE invoice_kardex (
     id SERIAL PRIMARY KEY,
-    invoice_id INT NOT NULL,
-    product_id VARCHAR(20) NOT NULL,
+    invoice_id INTEGER NOT NULL,
+    product_id INTEGER NOT NULL,
     type CHAR(1) NOT NULL CHECK (type IN ('+', '-')),
     quantity INT NOT NULL,
     cost DECIMAL(12,2) NOT NULL,

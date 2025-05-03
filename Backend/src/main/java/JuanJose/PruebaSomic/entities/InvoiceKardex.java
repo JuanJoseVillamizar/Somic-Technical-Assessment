@@ -1,5 +1,6 @@
 package JuanJose.PruebaSomic.entities;
 
+import JuanJose.PruebaSomic.utils.TransactionTypeConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,9 +19,9 @@ public class InvoiceKardex {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "CHAR(1) NOT NULL")
-    private Character type;
+    @Convert(converter = TransactionTypeConverter.class)
+    @Column(columnDefinition = "CHAR(1)",nullable = false)
+    private TransactionType type;
 
     @Column(nullable = false)
     private Integer quantity;
